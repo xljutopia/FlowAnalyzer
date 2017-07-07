@@ -1,9 +1,12 @@
 package com.abc.cpqs.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by lijiax on 6/18/15.
  */
-public class User {
+public class User implements Serializable{
+    private static final long serialVersionUID = 1779371791340041L;
     private int id;
     private String name;
     private String email;
