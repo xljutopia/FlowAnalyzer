@@ -14,9 +14,9 @@
 
     <select id='getUserById' parameterType='int' resultMap='UserDBResult' useCache="true">
         SELECT
-        id as userId,name,email,country,password
+        id,name,email,country,password
         FROM Users
-        WHERE ID = #{userId}
+        WHERE ID = #{id}
     </select>
 
     <select id='getAllUsers'  resultType='User'>
