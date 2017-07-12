@@ -16,17 +16,21 @@ public class FlowAnalyzerTopology {
 
     public static void main(String[] args){
         //Properties config = PropertyLoader.getProperties("/home/lijiax/conf/kafka.properties");
-        String zks = "127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183";
-        String topic = "udp";
-        String zkRoot = "/storm";
-        String id = "flow";
+        String zks = "localhost:2181,localhost:2182,localhost:2183";
+        String topic = args[0];
+		System.out.println("Topic name is "+topic);
+        String zkRoot = "/"+topic;
+        String id = "udpconsumer";
         BrokerHosts hosts = new ZkHosts(zks);
         SpoutConfig spoutConf = new SpoutConfig(hosts, topic, zkRoot, id);
+        spoutConf.forceFromStart = false;
         spoutConf.scheme = new SchemeAsMultiScheme(new StringScheme());
 
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("kafka-reader", new KafkaSpout(spoutConf),2);
-        builder.setBolt("promotionBolt", new PromotionBolt()).shuffleGrouping("kafka-reader");
+        KafkaSpout kafkaSpout = new KafkaSpout(spoutConf);
+
+        builder.setSpout("kafka-reader", kafkaSpout,2);
+        builder.setBolt("promotionBolt", new PromotionBolt(),2).shuffleGrouping("kafka-reader");
 
         Config conf = new Config();
         conf.setDebug(true);
