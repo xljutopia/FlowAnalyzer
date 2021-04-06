@@ -1,22 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.abc.cpqs</groupId>
   <artifactId>FlowAnalyzer</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
   <name>FlowAnalyzer</name>
-
-  <developers>
-    <developer>
-      <id>xielijia</id>
-      <name>谢立嘉</name>
-      <email>xielijia@abchina.com</email>
-      <roles>
-        <role>Developer</role>
-      </roles>
-    </developer>
-  </developers>
 
   <dependencies>
     <dependency>
